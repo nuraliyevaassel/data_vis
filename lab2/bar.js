@@ -26,11 +26,11 @@ const container = d3.select("svg")
 .call(d3.axisBottom(xScale))
 .attr('color','#DD1111')
 
-const setupBarsByData = (dataFoSetup = DATA) => {
+const quickData = (data = DATA) => {
   d3.selectAll(".bar").remove()
   container
       .selectAll(".bar")
-      .data(dataFoSetup)
+      .data(data)
       .enter()
       .append('rect')
       .classed('bar',true)
@@ -39,10 +39,9 @@ const setupBarsByData = (dataFoSetup = DATA) => {
       .attr('x',data=>xScale(data.name))
       .attr('y', data=>200-yScale(data.value));
 }
+quickData()
 
-setupBarsByData()
-
-const notToShowBarIds = []
+const ids = []
 
 listItems
 .append('input')
@@ -53,10 +52,10 @@ listItems
   const targetId = parseInt(e.target.id);
 
   if (e.target.checked) {
-    notToShowBarIds.splice(notToShowBarIds.indexOf(targetId), 1)
-    setupBarsByData(DATA.filter(item => !notToShowBarIds.includes(item.id)))
+    ids.splice(ids.indexOf(targetId), 1)
+    quickData(DATA.filter(item => !ids.includes(item.id)))
   } else {
-    notToShowBarIds.push(targetId)
+    ids.push(targetId)
     const filtered = DATA.filter((el)=>el.id!==targetId);
     d3.selectAll('.bar')
         .data(filtered, data=>data.name)
@@ -64,4 +63,3 @@ listItems
         .remove()
   }
 });
-
