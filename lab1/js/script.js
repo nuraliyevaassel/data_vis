@@ -1,4 +1,4 @@
-var link = "https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/cyclist-data.json"; //link to JSON data
+var link = "https://raw.githubusercontent.com/nuraliyevaassel/data_vis/master/lab1/js/data.json"; //link to JSON data
 
 var parseTime = d3.timeParse("%M:%S"); //parse time from JSON
 var parseYear = d3.timeParse("%Y"); //parse years from JSON
